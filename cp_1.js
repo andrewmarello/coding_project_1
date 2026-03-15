@@ -8,6 +8,7 @@ const form = document.getElementById("feedbackForm");
 const feedbackDisplay = document.getElementById("feedback-display");
 
 form.addEventListener("mouseover", function(event){
+    event.stopPropagation();
     if (event.target.id === "name") {
         event.target.title = "Please enter your full name.";
     }
@@ -20,12 +21,14 @@ form.addEventListener("mouseover", function(event){
 });
 
 form.addEventListener("mouseout", function(event){
+    event.stopPropagation();
     if (event.target.matches("input, textarea")) {
         event.target.title = "";
     }
 });
 
 form.addEventListener("input", function(event) {
+    event.stopPropagation();
     if (event.target.id === "comments") {
         let length = event.target.value.length;
         charCount.textContent = `Character Count: ${length}`;
@@ -33,6 +36,7 @@ form.addEventListener("input", function(event) {
 });
 
 form.addEventListener("submit", function(event) {
+    event.stopPropagation();
     if (nameInput.value === "" || emailInput.value === "" || commentsInput.value === "") {
         event.preventDefault();
         alert("Fill out all fields before submitting!");
